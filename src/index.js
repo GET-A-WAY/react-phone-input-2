@@ -267,7 +267,7 @@ class PhoneInput extends React.Component {
     if (this.props.enableAreaCodes === false) {
       let mainCode;
       hiddenAreaCodes.some(country => {
-        if (startsWith(inputNumber, country.dialCode)) {
+        if (startsWith(inputNumber, country.dialCode) || startsWith(inputNumber, this.props.prefix + country.dialCode)) {
           onlyCountries.some(o => {
             if (country.iso2 === o.iso2 && o.mainCode) {
               mainCode = o;
@@ -284,7 +284,7 @@ class PhoneInput extends React.Component {
     if (inputNumber.trim() === '') return secondBestGuess;
 
     const bestGuess = onlyCountries.reduce((selectedCountry, country) => {
-      if (startsWith(inputNumber, country.dialCode)) {
+      if (startsWith(inputNumber, country.dialCode) || startsWith(inputNumber, this.props.prefix + country.dialCode)) {
         if (country.dialCode.length > selectedCountry.dialCode.length) {
           return country;
         }
@@ -508,7 +508,6 @@ class PhoneInput extends React.Component {
     let newSelectedCountry = this.state.selectedCountry;
     let freezeSelection = this.state.freezeSelection;
 
-    alert(value);
     if (!this.props.countryCodeEditable) {
       const mainCode = newSelectedCountry.hasAreaCodes ?
         this.state.onlyCountries.find(o => o.iso2 === newSelectedCountry.iso2 && o.mainCode).dialCode :
@@ -547,7 +546,6 @@ class PhoneInput extends React.Component {
 
     if (onChange) e.persist();
 
-    alert(value);
     if (value.length > 0) {
       // before entering the number in new format, lets check if the dial code now matches some other country
       const inputNumber = value.replace(/\D/g, '');
