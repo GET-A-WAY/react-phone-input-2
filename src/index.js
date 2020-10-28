@@ -241,6 +241,7 @@ class PhoneInput extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log(nextProps.country, this.props.country)
     if (nextProps.country !== this.props.country) {
       this.updateCountry(nextProps.country);
     }
@@ -303,6 +304,8 @@ class PhoneInput extends React.Component {
   updateCountry = (country) => {
     const { onlyCountries } = this.state
     let newSelectedCountry;
+    console.log(country, country.indexOf(0))
+    console.log(onlyCountries);
     if (country.indexOf(0) >= '0' && country.indexOf(0) <= '9') { // digit
       newSelectedCountry = onlyCountries.find(o => o.dialCode == +country || o.iso2 == +country);
     } else {
