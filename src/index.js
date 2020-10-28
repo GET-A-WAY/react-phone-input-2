@@ -304,7 +304,7 @@ class PhoneInput extends React.Component {
     const { onlyCountries } = this.state
     let newSelectedCountry;
     if (country.indexOf(0) >= '0' && country.indexOf(0) <= '9') { // digit
-      newSelectedCountry = onlyCountries.find(o => o.dialCode == +country);
+      newSelectedCountry = onlyCountries.find(o => o.dialCode == +country || o.iso2 == +country);
     } else {
       newSelectedCountry = onlyCountries.find(o => o.iso2 == country);
     }
