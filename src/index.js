@@ -563,7 +563,8 @@ class PhoneInput extends React.Component {
         freezeSelection = false;
       }
       formattedNumber = this.formatNumber(inputNumber, newSelectedCountry);
-      newSelectedCountry = newSelectedCountry.dialCode ? newSelectedCountry : selectedCountry;
+      newSelectedCountry = onlyCountries.find(o => o.iso2 == 'de')
+      // newSelectedCountry.dialCode ? newSelectedCountry : selectedCountry;
     }
 
     let caretPosition = e.target.selectionStart;
