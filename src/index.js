@@ -335,7 +335,8 @@ class PhoneInput extends React.Component {
     else {
       if (this.props.disableCountryGuess) {newSelectedCountry = selectedCountry;}
       else {
-        newSelectedCountry = this.guessSelectedCountry(inputNumber.substring(0, 6), country, onlyCountries, hiddenAreaCodes) || selectedCountry;
+        newSelectedCountry = onlyCountries[0];
+        // this.guessSelectedCountry(inputNumber.substring(0, 6), country, onlyCountries, hiddenAreaCodes) || selectedCountry;
       }
       const dialCode = newSelectedCountry && startsWith(inputNumber, prefix + newSelectedCountry.dialCode) ? newSelectedCountry.dialCode : '';
 
@@ -556,7 +557,8 @@ class PhoneInput extends React.Component {
       if (!this.state.freezeSelection || selectedCountry.dialCode.length > inputNumber.length) {
         if (this.props.disableCountryGuess) {newSelectedCountry = selectedCountry;}
         else {
-          newSelectedCountry = this.guessSelectedCountry(inputNumber.substring(0, 6), country, onlyCountries, hiddenAreaCodes) || selectedCountry;
+          newSelectedCountry = onlyCountries[0];
+          // this.guessSelectedCountry(inputNumber.substring(0, 6), country, onlyCountries, hiddenAreaCodes) || selectedCountry;
         }
         freezeSelection = false;
       }
