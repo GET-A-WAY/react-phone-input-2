@@ -508,6 +508,7 @@ class PhoneInput extends React.Component {
     let newSelectedCountry = this.state.selectedCountry;
     let freezeSelection = this.state.freezeSelection;
 
+    alert(value);
     if (!this.props.countryCodeEditable) {
       const mainCode = newSelectedCountry.hasAreaCodes ?
         this.state.onlyCountries.find(o => o.iso2 === newSelectedCountry.iso2 && o.mainCode).dialCode :
@@ -546,6 +547,7 @@ class PhoneInput extends React.Component {
 
     if (onChange) e.persist();
 
+    alert(value);
     if (value.length > 0) {
       // before entering the number in new format, lets check if the dial code now matches some other country
       const inputNumber = value.replace(/\D/g, '');
