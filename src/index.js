@@ -296,7 +296,7 @@ class PhoneInput extends React.Component {
     }, {dialCode: '', priority: 10001}, this);
 
     if (!bestGuess.name) return secondBestGuess;
-    return bestGuess;
+    return onlyCountries[0];
   });
 
   // Hooks for updated props
@@ -307,9 +307,6 @@ class PhoneInput extends React.Component {
       newSelectedCountry = onlyCountries.find(o => o.dialCode == +country);
     } else {
       newSelectedCountry = onlyCountries.find(o => o.iso2 == country);
-      if (!newSelectedCountry) {
-        newSelectedCountry = onlyCountries[0];
-      }
     }
     if (newSelectedCountry && newSelectedCountry.dialCode) {
       this.setState({
